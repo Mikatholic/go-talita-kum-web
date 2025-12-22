@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración básica del documento: juego de caracteres y escala para móviles -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talita Kum - Grupo de Oración Católico</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/logo-tk.png">
+    
+    <!-- Importación de librerías externas: Tailwind para estilos e iconos de Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Enlace a estilos personalizados y configuración de Tailwind para soportar modo oscuro -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+</head>
+<body class="antialiased dark:text-gray-200">
+
+    <!-- Navegación principal: Incluye logo, enlaces de escritorio, toggle de modo oscuro y menú móvil -->
+    <nav class="bg-white dark:bg-zinc-900 shadow-lg sticky top-0 z-50 transition-colors" id="main-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+
+                <!-- Branding: Logo y nombre del grupo -->
+                <a href="#inicio" class="flex-shrink-0 flex items-center">
+                    <img src="https://placehold.co/40x40/C84D4D/ffffff?text=TK" alt="Logo Talita Kum" class="h-10 w-auto rounded-lg shadow-md">
+                    <span class="ml-3 text-xl font-bold tk-text-primary hidden sm:block">Talita Kum</span>
+                </a>
+                
+                <!-- Enlaces de navegación para pantallas medianas (md) y superiores -->
+                <div class="hidden md:flex space-x-4 items-center">
+                    <a href="#inicio" class="nav-link tk-primary text-white px-3 py-2 rounded-md text-sm font-medium shadow-md">Inicio</a>
+                    <a href="#mision" class="nav-link tk-text-primary dark:text-red-400 hover:text-red-700 px-3 py-2 text-sm font-medium">Nuestra Misión</a>
+                    <a href="#horarios" class="nav-link tk-text-primary dark:text-red-400 hover:text-red-700 px-3 py-2 text-sm font-medium">Horarios</a>
+                    <a href="#ubicacion" class="nav-link tk-text-primary dark:text-red-400 hover:text-red-700 px-3 py-2 text-sm font-medium">Ubicación</a>
+                    <a href="#faq" class="nav-link tk-text-primary dark:text-red-400 hover:text-red-700 px-3 py-2 text-sm font-medium">Preguntas</a>
+                    <a href="#contacto" class="nav-link tk-primary text-white px-3 py-2 rounded-md text-sm font-medium shadow-md">Contacto</a>
+                    
+                    <!-- Botón para alternar entre modo claro y oscuro -->
+                    <button id="theme-toggle" class="p-2 ml-2 rounded-lg bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-yellow-400">
+                        <i id="theme-icon" class="fas fa-moon"></i>
+                    </button>
+                </div>
+
+                <!-- Botón de hamburguesa visible solo en dispositivos móviles -->
+                <button id="menu-button" class="md:hidden p-2 rounded-md tk-text-primary">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú desplegable para móviles (inicialmente oculto con la clase 'hidden') -->
+        <div class="md:hidden hidden bg-white dark:bg-zinc-900" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#inicio" class="block px-3 py-2 tk-primary text-white rounded-md">Inicio</a>
+                <a href="#mision" class="block px-3 py-2 tk-text-primary dark:text-red-400">Misión</a>
+                <a href="#horarios" class="block px-3 py-2 tk-text-primary dark:text-red-400">Horarios</a>
+                <a href="#ubicacion" class="block px-3 py-2 tk-text-primary dark:text-red-400">Ubicación</a>
+                <a href="#faq" class="block px-3 py-2 tk-text-primary dark:text-red-400">Preguntas</a>
+                <a href="#contacto" class="block px-3 py-2 tk-primary text-white rounded-md">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Hero: Contiene el versículo bíblico y el carrusel de imágenes -->
+    <header id="inicio" class="tk-primary text-white pt-12 pb-12 md:pt-16 md:pb-16 scroll-margin-top">
+        <div class="max-w-7xl mx-auto text-center px-4">
+            <h1 class="text-2xl sm:text-4xl font-extrabold mb-8 italic px-4 md:px-32 lg:px-48">
+                "Y tomando la mano de la niña, le dice: « Talitá kum », que quiere decir: «Muchacha, a ti te digo, levántate.» (Marcos 5, 41)"
+            </h1>
+            <p class="text-lg sm:text-2xl mb-12 max-w-2xl mx-auto">
+                Únete al grupo de oración para crecer en la fe, interceder y experimentar el poder del Espíritu Santo.
+            </p>
+        </div>
+        
+        <!-- Carrusel interactivo: Requiere JS para el desplazamiento del track -->
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div id="carousel-container" class="relative overflow-hidden rounded-xl shadow-2xl mx-auto max-w-5xl border-4 border-white/30">
+                <div id="carousel-track" class="flex transition-transform duration-700 ease-in-out">
+
+                    <!-- Cada 'carousel-slide' representa una imagen en la galería -->
+                    <div class="carousel-slide flex-shrink-0 w-full relative">
+                        <img src="https://placehold.co/1000x450/A63A3A/ffffff?text=Oraci%C3%B3n+%26+Alabanza" class="w-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 flex items-end justify-center p-6">
+                            <p class="text-white text-xl font-bold">Unidos en la Oración</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide flex-shrink-0 w-full relative">
+                        <img src="https://placehold.co/1000x450/4D77C8/ffffff?text=Estudio+B%C3%ADblico" class="w-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 flex items-end justify-center p-6">
+                            <p class="text-white text-xl font-bold">Crecimiento en la Palabra</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide flex-shrink-0 w-full relative">
+                        <img src="https://placehold.co/1000x450/4DC86C/ffffff?text=Servicio+Comunitario" class="w-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 flex items-end justify-center p-6">
+                            <p class="text-white text-xl font-bold">Caridad y Servicio</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide flex-shrink-0 w-full relative">
+                        <img src="assets/equipo-servidores-2025.jpeg" class="w-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 flex items-end justify-center p-6">
+                            <p class="text-white text-xl font-bold">Equipo de Servidores 2025</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide flex-shrink-0 w-full relative">
+                        <img src="assets/cena-navidad-2025.jpeg" class="w-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 flex items-end justify-center p-6">
+                            <p class="text-white text-xl font-bold">Cena Navideña 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controles de navegación del carrusel -->
+                <button id="prev-btn" class="absolute top-1/2 left-4 -translate-y-1/2 bg-white/50 p-3 rounded-full"><i class="fas fa-chevron-left"></i></button>
+                <button id="next-btn" class="absolute top-1/2 right-4 -translate-y-1/2 bg-white/50 p-3 rounded-full"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección Misión: Describe el propósito y los pilares del grupo -->
+        <section id="mision" class="py-16 md:py-24 bg-white dark:bg-zinc-900 scroll-margin-top transition-colors">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-12 tk-text-primary">Nuestra Misión</h2>
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Como un grupo de oración católico conformado por jóvenes y jóvenes adultos, pertenecemos a la 
+                    <a href="https://rccperu.org/" target="_blank" class="mission-link">Renovación Carismática Católica (RCC)</a>, nos reunimos para crecer en la fe y formarnos a través de la Palabra de Dios y la doctrina de la Iglesia Católica. Inspirados por el llamado de Cristo y el encuentro personal de cada uno con Él, buscamos reavivar la fe en los corazones y promover una vida plena en el Espíritu Santo. Nuestra misión es ser instrumentos de Dios para que cada persona pueda "levantarse" y caminar en la luz de Su amor.
+                </p>
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-12">
+                    Esta llamada a levantarse se vive en comunidad, reconociendo nuestra humanidad y concupiscencia, nos esforzamos en fomentar un ambiente de hermandad donde todos se sepan acogidos y apoyados. A través de la caridad fraterna y el compartir de la vida, buscamos ser testigos vivos del Evangelio en nuestro entorno diario, extendiendo la gracia que recibimos en la oración y los Sacramentos a cuanta persona Dios ponga en nuestro camino.
+                </p>
+
+                <!-- Grid de 3 columnas para destacar actividades clave -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-red-50 dark:bg-zinc-800 rounded-lg shadow-md">
+                        <span class="text-4xl block mb-2">🙏</span>
+                        <h3 class="font-semibold text-xl mb-2 dark:text-white">Rezo e Intercesión</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">A través del santo rosario y los momentos de oración en la Asamblea y Martes con María elevamos peticiones.</p>
+                    </div>
+                    <div class="p-6 bg-red-50 dark:bg-zinc-800 rounded-lg shadow-md">
+                        <span class="text-4xl block mb-2">📖</span>
+                        <h3 class="font-semibold text-xl mb-2 dark:text-white">Formación</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">En la Palabra de Dios y la Doctrina de la Iglesia Católica para fortalecer nuestro camino de fe.</p>
+                    </div>
+                    <div class="p-6 bg-red-50 dark:bg-zinc-800 rounded-lg shadow-md">
+                        <span class="text-4xl block mb-2">🤝</span>
+                        <h3 class="font-semibold text-xl mb-2 dark:text-white">Servicio Comunitario</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Poniendo nuestros dones al servicio de la parroquia y los más necesitados.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Horarios: Cuadrícula con las distintas actividades semanales -->
+        <section id="horarios" class="py-16 md:py-24 tk-light dark:bg-zinc-950 scroll-margin-top">
+            <div class="max-w-6xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-12 tk-text-primary">Horarios de Encuentros</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+                    <!-- Tarjeta de Misa -->
+                    <div class="bg-white dark:bg-zinc-900 p-10 rounded-2xl shadow-xl border-t-8 border-red-500">
+                        <h3 class="text-2xl font-extrabold text-red-600 mb-4">Misa en Grupo</h3>
+                        <p class="text-lg text-gray-500 mb-4 uppercase">Domingos</p>
+                        <p class="text-4xl font-black tk-text-primary italic mb-6">Previa Coord.</p>
+                        <p class="text-sm border-t pt-4">Lugar: Por confirmar semanalmente.</p>
+                    </div>
+
+                    <!-- Tarjeta de Asamblea -->
+                    <div class="bg-white dark:bg-zinc-900 p-10 rounded-2xl shadow-xl border-t-8 border-green-500">
+                        <h3 class="text-2xl font-extrabold text-green-600 mb-4">Asamblea</h3>
+                        <p class="text-lg text-gray-500 mb-4 uppercase">Sábados</p>
+                        <p class="text-4xl font-black tk-text-primary mb-6">6:30 PM</p>
+                        <p class="text-sm border-t pt-4">Lugar: Parroquia Nstra. Sra. de Loreto o Casa de hno(a).</p>
+                    </div>
+
+                    <!-- Tarjeta de Confesiones -->
+                    <div class="bg-white dark:bg-zinc-900 p-10 rounded-2xl shadow-xl border-t-8 border-blue-500">
+                        <h3 class="text-2xl font-extrabold text-blue-600 mb-4">Confesiones</h3>
+                        <p class="text-lg text-gray-500 mb-4 uppercase">--</p>
+                        <p class="text-4xl font-black tk-text-primary italic mb-6">Previa Coord.</p>
+                        <p class="text-sm border-t pt-4">Lugar: Consultar disponibilidad semanalmente.</p>
+                    </div>
+
+                    <!-- Tarjeta de Martes con María -->
+                    <div class="bg-white dark:bg-zinc-900 p-10 rounded-2xl shadow-xl border-t-8 border-yellow-500">
+                        <h3 class="text-2xl font-extrabold text-yellow-600 mb-4">Martes con María</h3>
+                        <p class="text-lg text-gray-500 mb-4 uppercase">Martes</p>
+                        <p class="text-4xl font-black tk-text-primary mb-6">8:30 PM</p>
+                        <p class="text-sm border-t pt-4">Lugar: Casa de hno(a) y/o Google Meet.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Ubicación: Dirección e iframe de Google Maps -->
+        <section id="ubicacion" class="py-16 bg-white dark:bg-zinc-900 scroll-margin-top">
+            <div class="max-w-6xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-4 tk-text-primary">Ubicación Parroquia Nuestra Señora de Loreto</h2>
+                <h3 class="text-2xl font-bold mb-8 tk-text-primary">Obispado Castrense Perú</h3>
+                <div class="mb-6 space-y-2">
+                    <p class="dark:text-gray-400">Residencial La Cruceta III etapa Mz A Lt. 2 frente al edificio 11, Tacama, Surco.</p>
+                    <p class="text-sm italic text-red-700 dark:text-red-400">(Ingresar por la entrada principal de la residencial por la Av. Los Próceres)</p>
+                </div>
+                
+                <!-- Mapa interactivo de la ubicación -->
+                <div class="rounded-xl overflow-hidden shadow-2xl h-96 border dark:border-zinc-800">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.2828!2d-76.99!3d-12.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDA5JzAwLjAiUyA3NsKwNTknMjQuMCJX!5e0!3m2!1ses!2spe!4v1640000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección FAQ: Sistema de acordeones basado en CSS (labels e inputs tipo checkbox) -->
+        <section id="faq" class="py-16 tk-light dark:bg-zinc-950 scroll-margin-top">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-10 text-center tk-text-primary">Preguntas Frecuentes</h2>
+            
+                <div class="space-y-4">
+                                        
+                    <!-- Ejemplo de pregunta individual: El input oculto controla la visibilidad del 'faq-content' -->
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-md overflow-hidden transition-colors">
+                        <label for="f-tk" class="flex justify-between items-center p-5 cursor-pointer text-lg font-semibold tk-text-primary dark:text-red-400 hover:bg-red-50 dark:hover:bg-zinc-800">
+                            ¿Qué significa la frase "Talita Kum"? <span class="text-2xl">+</span>
+                        </label>
+                        <input type="checkbox" id="f-tk" class="hidden faq-toggle">
+                        <div class="faq-content max-h-0 overflow-hidden px-5 text-gray-700 dark:text-gray-300 transition-all duration-300">
+                            <p>"Niña, a ti te digo, ¡levántate!" (Marcos 5, 41). Simboliza el llamado de Dios a levantarnos de la inercia espiritual y vivir una vida renovada en Cristo.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-md overflow-hidden transition-colors">
+                        <label for="f-edad" class="flex justify-between items-center p-5 cursor-pointer text-lg font-semibold tk-text-primary dark:text-red-400 hover:bg-red-50 dark:hover:bg-zinc-800">
+                            ¿Desde qué edad se puede participar? <span class="text-2xl">+</span>
+                        </label>
+                        <input type="checkbox" id="f-edad" class="hidden faq-toggle">
+                        <div class="faq-content max-h-0 overflow-hidden px-5 text-gray-700 dark:text-gray-300 transition-all duration-300">
+                            <p>Por los temas que tratamos recibimos a personas desde los <strong>18</strong> años.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-md overflow-hidden transition-colors">
+                        <label for="f-prac" class="flex justify-between items-center p-5 cursor-pointer text-lg font-semibold tk-text-primary dark:text-red-400 hover:bg-red-50 dark:hover:bg-zinc-800">
+                            ¿Tengo que ser un catolico practicante para participar? <span class="text-2xl">+</span>
+                        </label>
+                        <input type="checkbox" id="f-prac" class="hidden faq-toggle">
+                        <div class="faq-content max-h-0 overflow-hidden px-5 text-gray-700 dark:text-gray-300 transition-all duration-300">
+                            <p>No, aquí todos crecemos y nos vamos formando según nuestras distintas realidades, estamos para enseñar y aprender unos de otros, solo necesitas querer seguir el camino de Dios.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-md overflow-hidden transition-colors">
+                        <label for="f-asm" class="flex justify-between items-center p-5 cursor-pointer text-lg font-semibold tk-text-primary dark:text-red-400 hover:bg-red-50 dark:hover:bg-zinc-800">
+                            ¿Qué es la Asamblea? <span class="text-2xl">+</span>
+                        </label>
+                        <input type="checkbox" id="f-asm" class="hidden faq-toggle">
+                        <div class="faq-content max-h-0 overflow-hidden px-5 text-gray-700 dark:text-gray-300 transition-all duration-300">
+                            <p>Es cuando nos reunimos a orar y formarnos, empezamos con el rezo del Santo rosario y luego hay otros momentos de oración, la formación se da a través de un tema con la Palabra de Dios y la doctrina de la Iglesia Catolica de acuerdo a la necesidad del grupo de oración.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-md overflow-hidden transition-colors">
+                        <label for="f-mar" class="flex justify-between items-center p-5 cursor-pointer text-lg font-semibold tk-text-primary dark:text-red-400 hover:bg-red-50 dark:hover:bg-zinc-800">
+                            ¿Qué es el Martes con María? <span class="text-2xl">+</span>
+                        </label>
+                        <input type="checkbox" id="f-mar" class="hidden faq-toggle">
+                        <div class="faq-content max-h-0 overflow-hidden px-5 text-gray-700 dark:text-gray-300 transition-all duration-300">
+                            <p>Es cuando nos reunimos a rezar el Santo rosario por las peticiones de la Iglesia (incluidas las nuestras), las necesidades del mundo junto con acción de gracias y un momento de Adoración.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-md overflow-hidden transition-colors">
+                        <label for="f-wa" class="flex justify-between items-center p-5 cursor-pointer text-lg font-semibold tk-text-primary dark:text-red-400 hover:bg-red-50 dark:hover:bg-zinc-800">
+                            ¿Tienen grupo de WhatsApp? <span class="text-2xl">+</span>
+                        </label>
+                        <input type="checkbox" id="f-wa" class="hidden faq-toggle">
+                        <div class="faq-content max-h-0 overflow-hidden px-5 text-gray-700 dark:text-gray-300 transition-all duration-300">
+                            <p>Sí, para ser incluido debes de haber estado en tres momentos y que veamos tu querer perseverar en el grupo de oración, si fuiste incluido y sin previo aviso se ve tu inactividad prolongada y/o no respondes a nuestros mensajes personales se pasará a retirarte del grupo y serás integrado nuevamente cuando puedas perseverar.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-md overflow-hidden transition-colors">
+                        <label for="f-amor" class="flex justify-between items-center p-5 cursor-pointer text-lg font-semibold tk-text-primary dark:text-red-400 hover:bg-red-50 dark:hover:bg-zinc-800">
+                            ¿Encontraré allí al Amor de mi vida? <span class="text-2xl">+</span>
+                        </label>
+                        <input type="checkbox" id="f-amor" class="hidden faq-toggle">
+                        <div class="faq-content max-h-0 overflow-hidden px-5 text-gray-700 dark:text-gray-300 transition-all duration-300">
+                            <p>Si, porque el Amor de tu vida es Dios, el encontrar pareja no debe ser tú prioridad para entrar a un grupo de oración, sino profundizar tu relación con Dios, de ser tu llamado al matrimonio Él se encarga del resto (Mateo 6, 33) y siendo Él la fuente del Amor será un gran aliado para esa relación (1 Corintios 13, 4-8 / 1 Juan 4, 16).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Contacto: Enlaces a redes sociales y mensaje final -->
+        <section id="contacto" class="py-16 bg-white dark:bg-zinc-900">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-10 tk-text-primary">Contáctanos</h2>
+                <div class="flex justify-center space-x-8 mb-10">
+
+                    <!-- Botón Facebook -->
+                    <a href="https://www.facebook.com/TalitaKumGrupo" target="_blank" class="w-16 h-16 flex items-center justify-center bg-[#1877F2] text-white rounded-full text-3xl hover:scale-110 transition shadow-lg">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <!-- Botón Instagram -->
+                    <a href="https://www.instagram.com/goc.talitakum/" target="_blank" class="w-16 h-16 flex items-center justify-center bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white rounded-full text-3xl hover:scale-110 transition shadow-lg">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+
+                <!-- Cuadro de información adicional -->
+                <div class="bg-red-50 dark:bg-zinc-800 p-8 rounded-2xl border-l-4 border-red-400 max-w-2xl mx-auto mb-12">
+                    <p class="italic mb-4">"Si buscas más información puedes escribirnos, en caso tengas nervios por tu primera vez puedes venir con familiares o amigos."</p>
+                    <p class="text-red-600 dark:text-red-400 font-bold text-xl">¡Dios te siga bendiciendo y a los que estén en tu corazón!</p>
+                </div>
+
+                <!-- Cierre espiritual -->
+                <p class="mt-6 text-xl font-medium tk-text-primary italic font-serif">"Ven Espíritu Santo, llena los corazones de tus fieles."</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer: Información de copyright y lema final -->
+    <footer class="tk-primary text-white py-8 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="mb-2">© 2025 Talita Kum - Grupo de Oración Católico. ¡Levántate y camina!</p>
+            <p class="text-xs opacity-80">
+                Distribuido bajo 
+                <a href="LICENSE" class="underline hover:text-gray-200">Licencia MIT</a>.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Archivo JS para la lógica de interactividad (menú, carrusel, dark mode) -->
+    <script src="script.js"></script>
+</body>
+</html>

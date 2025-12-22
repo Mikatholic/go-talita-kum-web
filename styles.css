@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+/* Identidad Visual TK */
+.tk-primary { background-color: #C84D4D; } 
+.tk-text-primary { color: #C84D4D; }
+.tk-light { background-color: #f9dcdc; } 
+.tk-border-primary { border-color: #C84D4D; }
+
+/* Acordeón FAQ */
+.faq-toggle:checked + .faq-content {
+    max-height: 800px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Comportamiento Global */
+html {
+    scroll-behavior: smooth;
+}
+
+.scroll-margin-top {
+    scroll-margin-top: 2rem;
+}
+
+.carousel-slide img {
+    opacity: 0.85;
+}
+
+.mission-link {
+    font-weight: 700;
+    text-decoration: underline;
+    color: #C84D4D;
+}
+
+/* Modo Oscuro Manual */
+.dark body { background-color: #121212; }
+.dark .tk-light { background-color: #2d1a1a; }
