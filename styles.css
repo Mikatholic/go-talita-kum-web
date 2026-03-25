@@ -34,7 +34,7 @@ body {
     object-fit: cover; 
     /* Opcional: centra la parte importante de la imagen */
     object-position: center; 
-    opacity: 0.85;
+    opacity: 1;
 }
 
 /* Ajuste para móviles: reducimos la altura para que no ocupe toda la pantalla */
@@ -58,10 +58,6 @@ html {
 
 .scroll-margin-top {
     scroll-margin-top: 2rem;
-}
-
-.carousel-slide img {
-    opacity: 0.85;
 }
 
 .mission-link {
