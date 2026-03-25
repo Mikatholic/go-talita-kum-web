@@ -12,6 +12,38 @@ body {
 .tk-light { background-color: #f9dcdc; } 
 .tk-border-primary { border-color: #C84D4D; }
 
+/* Contenedor del carrusel */
+#carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    /* Definimos una altura fija para todo el carrusel */
+    height: 600px; 
+}
+
+/* Regla para las imágenes dentro del carrusel */
+.carousel-slide {
+    min-width: 100%;
+    height: 100%; /* Ocupa el alto del track */
+    overflow: hidden;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    /* Mantiene la proporción y recorta los bordes */
+    object-fit: cover; 
+    /* Opcional: centra la parte importante de la imagen */
+    object-position: center; 
+    opacity: 0.85;
+}
+
+/* Ajuste para móviles: reducimos la altura para que no ocupe toda la pantalla */
+@media (max-width: 640px) {
+    #carousel-track {
+        height: 250px;
+    }
+}
+
 /* Acordeón FAQ */
 .faq-toggle:checked + .faq-content {
     max-height: 800px;
