@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     let currentSlide = 0;
-    const totalSlides = 6;
+    const totalSlides = 7;
 
     function moveToSlide(index) {
         currentSlide = (index + totalSlides) % totalSlides;
